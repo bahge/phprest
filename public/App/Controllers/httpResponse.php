@@ -35,4 +35,16 @@ class httpResponse
         if ($is_invalid == true) $this->header .= 'HTTP/1.0 401 Unauthorized';
         return ['header' => $this->header, 'Mensagem' => [$message]];
     }
+
+    /**
+     * @Description Função que monta o retorno da resposta http para methodos válidos
+     * @param array $message => mensagem que será encodada para o json
+     * @return array
+     */
+    public function is_valid_method(string $message): array
+    {
+        $this->header = 'WWW-Authenticate: Basic';
+        $this->header .= ' Content-Type: application/json';
+        return ['header' => $this->header, 'msg' => [$message]];
+    }
 }

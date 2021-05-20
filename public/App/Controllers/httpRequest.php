@@ -49,7 +49,7 @@ class httpRequest implements httpValidation
 
                 if ($httpAutentication->is_authenticated($user['user'], $user['pass'])) {
                     // Checar o e-mail e construir
-                    echo "Usuário existe";
+                    return true;
                     exit;
 
                 } else {
