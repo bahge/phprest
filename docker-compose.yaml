@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  restsi_app:
+    container_name: restsi
+    build:
+      dockerfile: php.Dockerfile
+      context: .
+    restart: always
+    volumes:
+      - "${APP_VOLUME}:/var/www/html/"
+    logging:
+      options:
+        max-size: "${LOG_SIZE}"
+        max-file: "${LOG_MAX_FILE}"
+    ports:
+      - "${APP_PORT}:8095"
+    networks:
+      network_restsi:
+        ipv4_address: 172.10.12.2
+networks:
+  network_restsi:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.10.12.0/24
